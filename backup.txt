@@ -1,0 +1,316 @@
+alter system set control_files='/home/u01/app/oracle/oradata/ORCL/controlfile/o1_mf_j7s6m0gp_.ctl','/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/controlfile/o1_mf_j7s6m0h6_.ctl','/home/u01/app/oracle/oradata/ORCL/controlfile/o2_mf_j7s6m0gp_.ctl' SCOPE=SPFILE;
+
+
+cp /home/u01/app/oracle/oradata/ORCL/controlfile/o1_mf_j7s6m0gp_.ctl /home/u01/app/oracle/oradata/ORCL/controlfile/o2_mf_j7s6m0gp_.ctl
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> alter system set control_files='/home/u01/app/oracle/oradata/ORCL/controlfile/o1_mf_j7s6m0gp_.ctl','/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/controlfile/o1_mf_j7s6m0h6_.ctl','/home/u01/app/oracle/oradata/ORCL/controlfile/o2_mf_j7s6m0gp_.ctl' SCOPE=SPFILE;
+
+System altered.
+
+SQL> shutdown immediate
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> exit
+Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+[oracle@srv1 ~]$
+[oracle@srv1 ~]$
+[oracle@srv1 ~]$ cd /home/u01/app/oracle/oradata/ORCL
+[oracle@srv1 ORCL]$ ll
+total 4
+drwxr-x---. 2 oracle oinstall   33 Apr 19 00:45 controlfile
+drwxr-x---. 2 oracle oinstall 4096 Apr 19 00:45 datafile
+drwxr-x---. 2 oracle oinstall   93 Apr 19 00:45 onlinelog
+[oracle@srv1 ORCL]$ cd controlfile
+[oracle@srv1 controlfile]$ ll
+total 10352
+-rw-r-----. 1 oracle oinstall 10600448 Jul 30 06:43 o1_mf_j7s6m0gp_.ctl
+[oracle@srv1 controlfile]$ cd
+[oracle@srv1 ~]$ cp /home/u01/app/oracle/oradata/ORCL/controlfile/o1_mf_j7s6m0gp_.ctl /home/u01/app/                                                          oracle/oradata/ORCL/controlfile/o2_mf_j7s6m0gp_.ctl
+[oracle@srv1 ~]$
+[oracle@srv1 ~]$
+[oracle@srv1 ~]$
+[oracle@srv1 ~]$ ll
+total 4
+drwxrwxr-x. 2 oracle oinstall   40 Sep  2  2020 Desktop
+drwxrwxr-x. 2 oracle oinstall    6 Sep  2  2020 Documents
+drwxrwxr-x. 2 oracle oinstall   28 Apr 16 10:28 Downloads
+drwxrwxr-x. 2 oracle oinstall    6 Sep  2  2020 Music
+drwxr-xr-x. 2 oracle oinstall    6 Apr 18 03:34 oraInventory
+drwxrwxr-x. 2 oracle oinstall   53 Apr 19 00:48 Pictures
+drwxrwxr-x. 2 oracle oinstall    6 Sep  2  2020 Public
+drwxrwxr-x. 2 oracle oinstall    6 Sep  2  2020 Templates
+drwx------. 3 oracle oinstall 4096 Jul 29 07:46 $TMP
+drwxrwxr-x. 2 oracle oinstall    6 Sep  2  2020 Videos
+[oracle@srv1 ~]$ cd /home/u01/app/oracle/oradata/ORCL
+[oracle@srv1 ORCL]$ ll
+total 4
+drwxr-x---. 2 oracle oinstall   60 Jul 30 06:51 controlfile
+drwxr-x---. 2 oracle oinstall 4096 Apr 19 00:45 datafile
+drwxr-x---. 2 oracle oinstall   93 Apr 19 00:45 onlinelog
+[oracle@srv1 ORCL]$ cd controlfile
+[oracle@srv1 controlfile]$ ll
+total 20704
+-rw-r-----. 1 oracle oinstall 10600448 Jul 30 06:43 o1_mf_j7s6m0gp_.ctl
+-rw-r-----. 1 oracle oinstall 10600448 Jul 30 06:51 o2_mf_j7s6m0gp_.ctl
+[oracle@srv1 controlfile]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Fri Jul 30 06:56:32 2021
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+Connected to an idle instance.
+
+SQL> startup
+ORACLE instance started.
+
+Total System Global Area 1543503872 bytes
+Fixed Size                  8621040 bytes
+Variable Size             989856784 bytes
+Database Buffers          536870912 bytes
+Redo Buffers                8155136 bytes
+Database mounted.
+Database opened.
+SQL> select name from v$controlfile
+  2  ;
+
+NAME
+--------------------------------------------------------------------------------
+/home/u01/app/oracle/oradata/ORCL/controlfile/o1_mf_j7s6m0gp_.ctl
+/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/controlfile/o1_mf_j7s6m0h6_.ct
+l
+
+/home/u01/app/oracle/oradata/ORCL/controlfile/o2_mf_j7s6m0gp_.ctl
+
+SQL> shutdown immediate;
+Database closed.
+Database dismounted.
+ORACLE instance shut down.
+SQL> startup mount
+ORACLE instance started.
+
+Total System Global Area 1543503872 bytes
+Fixed Size                  8621040 bytes
+Variable Size             989856784 bytes
+Database Buffers          536870912 bytes
+Redo Buffers                8155136 bytes
+Database mounted.
+SQL> exit
+Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+[oracle@srv1 controlfile]$ cd
+[oracle@srv1 ~]$ rman target /
+
+Recovery Manager: Release 12.2.0.1.0 - Production on Fri Jul 30 07:04:55 2021
+
+Copyright (c) 1982, 2017, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: ORCL (DBID=1598020256, not open)
+
+RMAN> backup database;
+
+Starting backup at 30-JUL-21
+using target database control file instead of recovery catalog
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=255 device type=DISK
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00001 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_system_j7s6jr                                                          f7_.dbf
+input datafile file number=00003 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_sysaux_j7s6kk                                                          n0_.dbf
+input datafile file number=00004 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_undotbs1_j7s6                                                          l0sb_.dbf
+input datafile file number=00007 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_users_j7s6l1x                                                          h_.dbf
+channel ORA_DISK_1: starting piece 1 at 30-JUL-21
+channel ORA_DISK_1: finished piece 1 at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_nnndf_TAG2                                                          0210730T070517_jj6v3g0d_.bkp tag=TAG20210730T070517 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:16
+Finished backup at 30-JUL-21
+
+Starting Control File and SPFILE Autobackup at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/autobackup/2021_07_30/o1_mf_s_1079247                                                          565_jj6v3xc5_.bkp comment=NONE
+Finished Control File and SPFILE Autobackup at 30-JUL-21
+
+RMAN> exit
+
+
+Recovery Manager complete.
+[oracle@srv1 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 12.2.0.1.0 Production on Fri Jul 30 07:06:30 2021
+
+Copyright (c) 1982, 2016, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+SQL> archive log list
+Database log mode              No Archive Mode
+Automatic archival             Disabled
+Archive destination            USE_DB_RECOVERY_FILE_DEST
+Oldest online log sequence     5
+Current log sequence           7
+SQL> alter database archivelog;
+
+Database altered.
+
+SQL> archive log list
+Database log mode              Archive Mode
+Automatic archival             Enabled
+Archive destination            USE_DB_RECOVERY_FILE_DEST
+Oldest online log sequence     5
+Next log sequence to archive   7
+Current log sequence           7
+SQL> alter database open
+  2  ;
+
+Database altered.
+
+SQL> select name open_mode from v$database;
+
+OPEN_MODE
+---------
+ORCL
+
+SQL> col open_mode for for a15;
+SP2-0246: Illegal FORMAT string "for"
+SQL> col open_mode for a14;
+SQL>
+SQL> select name open_mode from v$database;
+
+OPEN_MODE
+--------------
+ORCL
+
+SQL> rman target /
+SP2-0734: unknown command beginning "rman targe..." - rest of line ignored.
+SQL> exit
+Disconnected from Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+[oracle@srv1 ~]$ rman target /
+
+Recovery Manager: Release 12.2.0.1.0 - Production on Fri Jul 30 07:11:26 2021
+
+Copyright (c) 1982, 2017, Oracle and/or its affiliates.  All rights reserved.
+
+connected to target database: ORCL (DBID=1598020256)
+
+RMAN> backup database plus archivelog;
+
+
+Starting backup at 30-JUL-21
+current log archived
+using target database control file instead of recovery catalog
+allocated channel: ORA_DISK_1
+channel ORA_DISK_1: SID=269 device type=DISK
+channel ORA_DISK_1: starting archived log backup set
+channel ORA_DISK_1: specifying archived log(s) in backup set
+input archived log thread=1 sequence=7 RECID=1 STAMP=1079248309
+channel ORA_DISK_1: starting piece 1 at 30-JUL-21
+channel ORA_DISK_1: finished piece 1 at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_annnn_TAG2                                                          0210730T071149_jj6vhowp_.bkp tag=TAG20210730T071149 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:01
+Finished backup at 30-JUL-21
+
+Starting backup at 30-JUL-21
+using channel ORA_DISK_1
+channel ORA_DISK_1: starting full datafile backup set
+channel ORA_DISK_1: specifying datafile(s) in backup set
+input datafile file number=00001 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_system_j7s6jr                                                          f7_.dbf
+input datafile file number=00003 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_sysaux_j7s6kk                                                          n0_.dbf
+input datafile file number=00004 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_undotbs1_j7s6                                                          l0sb_.dbf
+input datafile file number=00007 name=/home/u01/app/oracle/oradata/ORCL/datafile/o1_mf_users_j7s6l1x                                                          h_.dbf
+channel ORA_DISK_1: starting piece 1 at 30-JUL-21
+channel ORA_DISK_1: finished piece 1 at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_nnndf_TAG2                                                          0210730T071151_jj6vhq67_.bkp tag=TAG20210730T071151 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:07
+Finished backup at 30-JUL-21
+
+Starting backup at 30-JUL-21
+current log archived
+using channel ORA_DISK_1
+channel ORA_DISK_1: starting archived log backup set
+channel ORA_DISK_1: specifying archived log(s) in backup set
+input archived log thread=1 sequence=8 RECID=2 STAMP=1079248318
+channel ORA_DISK_1: starting piece 1 at 30-JUL-21
+channel ORA_DISK_1: finished piece 1 at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_annnn_TAG2                                                          0210730T071158_jj6vhyht_.bkp tag=TAG20210730T071158 comment=NONE
+channel ORA_DISK_1: backup set complete, elapsed time: 00:00:01
+Finished backup at 30-JUL-21
+
+Starting Control File and SPFILE Autobackup at 30-JUL-21
+piece handle=/home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/autobackup/2021_07_30/o1_mf_s_1079248                                                          319_jj6vhzo3_.bkp comment=NONE
+Finished Control File and SPFILE Autobackup at 30-JUL-21
+
+RMAN> list backup;
+
+
+List of Backup Sets
+===================
+
+
+BS Key  Type LV Size       Device Type Elapsed Time Completion Time
+------- ---- -- ---------- ----------- ------------ ---------------
+1       Full    1.03G      DISK        00:00:08     30-JUL-21
+        BP Key: 1   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T070517
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_nnn                                                          df_TAG20210730T070517_jj6v3g0d_.bkp
+  List of Datafiles in backup set 1
+  File LV Type Ckp SCN    Ckp Time  Abs Fuz SCN Sparse Name
+  ---- -- ---- ---------- --------- ----------- ------ ----
+  1       Full 2079755    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_system_j7s6jrf7_.dbf
+  3       Full 2079755    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_sysaux_j7s6kkn0_.dbf
+  4       Full 2079755    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_undotbs1_j7s6l0sb_.dbf
+  7       Full 2079755    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_users_j7s6l1xh_.dbf
+
+BS Key  Type LV Size       Device Type Elapsed Time Completion Time
+------- ---- -- ---------- ----------- ------------ ---------------
+2       Full    10.19M     DISK        00:00:00     30-JUL-21
+        BP Key: 2   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T070533
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/autobackup/2021_07_30/o1_mf_s_                                                          1079247565_jj6v3xc5_.bkp
+  SPFILE Included: Modification time: 30-JUL-21
+  SPFILE db_unique_name: ORCL
+  Control File Included: Ckp SCN: 2079755      Ckp time: 30-JUL-21
+
+BS Key  Size       Device Type Elapsed Time Completion Time
+------- ---------- ----------- ------------ ---------------
+3       40.24M     DISK        00:00:00     30-JUL-21
+        BP Key: 3   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T071149
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_ann                                                          nn_TAG20210730T071149_jj6vhowp_.bkp
+
+  List of Archived Logs in backup set 3
+  Thrd Seq     Low SCN    Low Time  Next SCN   Next Time
+  ---- ------- ---------- --------- ---------- ---------
+  1    7       2064036    29-JUL-21 2080349    30-JUL-21
+
+BS Key  Type LV Size       Device Type Elapsed Time Completion Time
+------- ---- -- ---------- ----------- ------------ ---------------
+4       Full    1.03G      DISK        00:00:05     30-JUL-21
+        BP Key: 4   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T071151
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_nnn                                                          df_TAG20210730T071151_jj6vhq67_.bkp
+  List of Datafiles in backup set 4
+  File LV Type Ckp SCN    Ckp Time  Abs Fuz SCN Sparse Name
+  ---- -- ---- ---------- --------- ----------- ------ ----
+  1       Full 2080359    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_system_j7s6jrf7_.dbf
+  3       Full 2080359    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_sysaux_j7s6kkn0_.dbf
+  4       Full 2080359    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_undotbs1_j7s6l0sb_.dbf
+  7       Full 2080359    30-JUL-21              NO    /home/u01/app/oracle/oradata/ORCL/datafile/o1                                                          _mf_users_j7s6l1xh_.dbf
+
+BS Key  Size       Device Type Elapsed Time Completion Time
+------- ---------- ----------- ------------ ---------------
+5       6.00K      DISK        00:00:00     30-JUL-21
+        BP Key: 5   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T071158
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/backupset/2021_07_30/o1_mf_ann                                                          nn_TAG20210730T071158_jj6vhyht_.bkp
+
+  List of Archived Logs in backup set 5
+  Thrd Seq     Low SCN    Low Time  Next SCN   Next Time
+  ---- ------- ---------- --------- ---------- ---------
+  1    8       2080349    30-JUL-21 2080368    30-JUL-21
+
+BS Key  Type LV Size       Device Type Elapsed Time Completion Time
+------- ---- -- ---------- ----------- ------------ ---------------
+6       Full    10.19M     DISK        00:00:00     30-JUL-21
+        BP Key: 6   Status: AVAILABLE  Compressed: NO  Tag: TAG20210730T071159
+        Piece Name: /home/u01/app/oracle/fast_recovery_area/ORCL/ORCL/autobackup/2021_07_30/o1_mf_s_                                                          1079248319_jj6vhzo3_.bkp
+  SPFILE Included: Modification time: 30-JUL-21
+  SPFILE db_unique_name: ORCL
+  Control File Included: Ckp SCN: 2080377      Ckp time: 30-JUL-21

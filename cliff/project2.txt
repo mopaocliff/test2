@@ -1,0 +1,20 @@
+                                project:
+
+At work, we need a new linux machine for some testing. And you are assing to the task.
+
+1- open your visual studio code , type a command to move to your home directory.
+2- create a folder called class-servers
+3- move into that class-servers and create a folder called debian
+4- move into debian folder, then run a vagrant command to initialize the debian/jessie64
+5- run a command to check if a Vagrantfile was created.
+6- run a vagrant command to boot up the debian server.
+7- run a vagrant command to login to your newly created vagrant server 
+8- do a full inventory of that server.
+9- create a user account called u5bt with a pasword of abc123
+10-run a command to install these packages: apache2 , git, vim, wget
+11- create a file called linux-commands and in that file, type all the linux command you know and what they are used for.( dont forget to save a quit)
+12- give 4 differents commands to display the content of linux-commands 
+13- what is the size of the file linux-commands
+14- type a command to check how many lines are in the file linux-commands
+15- we want to check if the word uptime is in that file how can we do that?
+16- one week are on the same server and we forget where is linux-commands file , how can we find out?

@@ -1,0 +1,44 @@
+                                  Project1:
+
+ At work, there are servers that need to be decomissioned ( out of warranty, not working properly, lease expiration)and you are assigned to do a complete inventory of those servers.
+please use these components to login to each server in question and do the required task.
+The inventory is mostly in case we need to rebuild/order the same server.
+
+
+***** First server ****
+
+server ip: 173.255.203.109
+username: u5bt
+password: abc
+
+1- check how many cpus are on the server
+2- what is the speed of that cpu?
+3- how many hard drive(s) do we have and what is/are the size(s) ?
+4- what is the total memory on the system?
+5- is a the system 32 bits or 64 bits?
+7- what os is running on that machine? is it ubuntu, CentOS , redhat, or ?
+8- how long has that system been up?
+9- what is the kernel version?
+10- give 20 commands you know in linux , and what is your favorite? why?
+
+
+
+***** second server ****
+
+server: unixtrainings.tk
+username: u5bt
+password: school1
+
+1- check how many cpus are on the server
+2- what is the speed of that cpu?
+3- how many hard drive(s) do we have and what is/are the size(s) ?
+4- what is the total memory on the system?
+5- is a the system 32 bits or 64 bits?
+7- what os is running on that machine? is it ubuntu, CentOS , redhat, or ?
+8- how long has that system been up?
+9- what is the kernel version?
+10- give 20 commands you know in linux , and what is your favorite? why?
+
+
+
+

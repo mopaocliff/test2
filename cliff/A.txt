@@ -1,0 +1,31 @@
+1) find / -name deploy.cfg
+/opt/deployment/dev/deploy.cfg
+
+2)cat /opt/staging/qa/prod/deployment/success.txt
+If you found yourself here reading this, then very very good job to you!!!!
+Keep learning, keep struggling, keep fighting, very soon you will be so happy you did put in the work.
+success is the accumulation of small successful steps and this is one of them.
+
+3)added scripture
+
+4)it belongs to Linux group
+
+cd /opt/staging/qa/prod/deployment
+5)the permission for the other is read only
+
+6 [root@localhost deployment]# chown u5bt success.txt 
+chown u5bt 
+
+7)usermod -c "John Mary" u5bt
+
+8)chmod 760 success.txt
+
+9) passwd u5bt  new passwd: redhat
+
+10) useradd sarah usermod -s /sbin/nologin
+
+11)groupadd network
+
+12)useradd -G network henry
+
+13)useradd Herman, passwd Herman
